@@ -39,7 +39,9 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label"> Mô Tả </label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" name="mo_ta" id="mo_ta">
+
+                                                            <textarea name="content" id="editor" cols="30" rows="10"></textarea>
+
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
@@ -126,29 +128,25 @@
     </div>
     </div>
     </div>
-@section('ckeditor')
-    <script src="admin/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('ckeditor', {
-            filebrowserBrowseUrl: '{{ url('ckfinder/ckfinder.html') }}',
-            filebrowserImageBrowseUrl: '{{ url('ckfinder/ckfinder.html?type=Images') }}',
-            filebrowserFlashBrowseUrl: '{{ url('ckfinder/ckfinder.html?type=Flash') }}',
-            filebrowserUploadUrl: '{{ url('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-            filebrowserImageUploadUrl: '{{ url('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-            filebrowserFlashUploadUrl: '{{ url('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-        });
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
-    <script>
-        CKEDITOR.replace('ckeditor_detail', {
-            filebrowserBrowseUrl: '{{ url('ckfinder/ckfinder.html') }}',
-            filebrowserImageBrowseUrl: '{{ url('ckfinder/ckfinder.html?type=Images') }}',
-            filebrowserFlashBrowseUrl: '{{ url('ckfinder/ckfinder.html?type=Flash') }}',
-            filebrowserUploadUrl: '{{ url('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-            filebrowserImageUploadUrl: '{{ url('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-            filebrowserFlashUploadUrl: '{{ url('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-        });
-    </script>
-    <script type="text/javascript"
-            src="{{url('admin/ckfinder/ckfinder-laravel-package/public/ckfinder/ckfinder.js')}}"></script>
+    {{--<script src="{{ url('admin/files/ckeditor/ckeditor.js') }}"></script>--}}
+{{--<script type="text/javascript">--}}
+    {{--var editor = CKEDITOR.replace('editor1',{--}}
+        {{--language:'vi',--}}
+        {{--filebrowserImageBrowseUrl : '{{asset('admin/files/ckfinder/ckfinder.html?Type=Images')}}',--}}
+        {{--filebrowserFlashBrowseUrl : '{{asset('admin/files/ckfinder/ckfinder.html?Type=Flash')}}',--}}
+        {{--filebrowserImageUploadUrl : '{{asset('admin/files/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images')}}',--}}
+        {{--filebrowserFlashUploadUrl : '{{asset('admin/files/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash')}}',--}}
+    {{--});--}}
+{{--</script>﻿--}}
 @endsection
-@stop

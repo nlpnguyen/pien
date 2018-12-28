@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\hoa_don_chi_tiet_model;
+use App\khachhangmodel;
 use App\san_pham_model;
 use App\loai_san_pham_model;
 use App\danh_muc_san_pham_model;
@@ -211,4 +213,21 @@ class admincontroller extends Controller
         return redirect()->route('admin.list_loai_san_pham')-> with(['flash_level'=>'success','flash_message'=>'SỬA THÀNH CÔNG!']);
     }
     //_loai_san_pham_end//
+    //haodon//
+    public function list_hoa_don()
+    {
+        $hoadon = khachhangmodel::all();
+        foreach ($hoadon as $key=>$value) {
+            $hoadon[$key]['spc']=hoa_don_chi_tiet_model::select('*')->join('san_pham','san_pham.id','hoa_don_chi_tiet.id_san_pham')->where('id_khachhang',$value->id)->get();
+        }
+//        dd($hoadon);
+        return view('admin.list_hoa_don', compact('hoadon'));
+    }
+
+    public function del_san_pham(Request $request,$id){
+        $dl = san_pham_model::find($id);
+        $dl->trangthai =0;
+        $dl->save();
+        return redirect()->route('admin.list_san_pham');
+    }
 }

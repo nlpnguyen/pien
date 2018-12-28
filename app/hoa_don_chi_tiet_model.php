@@ -12,6 +12,8 @@ class hoa_don_chi_tiet_model extends Model
         'id_san_pham',
         'unit_price',
         'so_luong',
+        'ghi_chu',
+        'id_khachhang',
         'trangthai',
     ];
 }

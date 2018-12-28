@@ -10,75 +10,16 @@
                         <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
 
                             <div class="item" style="background-image: url('http://localhost/pien/public/page/assets/images/slider/banner-2.jpg');">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-offset-3 col-md-5">
-                                            <div class="caption vertical-center text-left">
-                                                <div class="hero-1 fadeInDown-1">
-                                                    The New <br> Standard
-                                                </div>
 
-                                                <div class="hero-subtitle fadeInDown-2">
-                                                    under favorable smartwatches
-                                                </div>
-                                                <div class="hero-v2-price fadeInDown-3">
-                                                    from <br><span>$749</span>
-                                                </div>
-                                                <div class="hero-action-btn fadeInDown-4">
-                                                    <a href="single-product.html" class="big le-button ">Start
-                                                        Buying</a>
-                                                </div>
-                                            </div><!-- /.caption -->
-                                        </div>
-                                    </div>
-                                </div><!-- /.container -->
                             </div><!-- /.item -->
 
 
                             <div class="item" style="background-image: url('http://localhost/pien/public/page/assets/images/slider/banner-1.jpg');">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-offset-3 col-md-5">
-                                            <div class="caption vertical-center text-left">
-                                                <div class="hero-subtitle-v2 fadeInDown-1">
-                                                    shop to get what you loves
-                                                </div>
 
-                                                <div class="hero-2 fadeInDown-2">
-                                                    Timepieces that make a statement up to <strong>40% Off</strong>
-                                                </div>
-
-                                                <div class="hero-action-btn fadeInDown-3">
-                                                    <a href="single-product.html" class="big le-button ">Start
-                                                        Buying</a>
-                                                </div>
-                                            </div><!-- /.caption -->
-                                        </div>
-                                    </div>
-                                </div><!-- /.container -->
                             </div><!-- /.item -->
 
                             <div class="item" style="background-image: url('http://localhost/pien/public/page/assets/images/slider/banner-3.jpg');">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-offset-3 col-md-5">
-                                            <div class="caption vertical-center text-left">
-                                                <div class="hero-subtitle-v2 fadeInLeft-1">
-                                                    shop to get what you loves
-                                                </div>
 
-                                                <div class="hero-2 fadeInRight-1">
-                                                    Timepieces that make a statement up to <strong>40% Off</strong>
-                                                </div>
-
-                                                <div class="hero-action-btn fadeInLeft-2">
-                                                    <a href="single-product.html" class="big le-button ">Start
-                                                        Buying</a>
-                                                </div>
-                                            </div><!-- /.caption -->
-                                        </div>
-                                    </div>
-                                </div><!-- /.container -->
                             </div><!-- /.item -->
 
 
@@ -145,97 +86,10 @@
 
                     <div class="home-v1-deals-and-tabs deals-and-tabs row animate-in-view fadeIn animated"
                          data-animation="fadeIn">
-                        <div class="deals-block col-lg-4">
-                            <section class="section-onsale-product">
-                                <header>
-                                    <h2 class="h1">Special Offer</h2>
-                                    <div class="savings">
-                                        <span class="savings-text">Save <span class="amount">$20.00</span></span>
-                                    </div>
-                                </header><!-- /header -->
-
-                                <div class="onsale-products">
-                                    <div class="onsale-product">
-                                        <a href="shop.html">
-                                            <div class="product-thumbnail">
-                                                <img class="wp-post-image" data-echo="assets/images/onsale-product.jpg"
-                                                     src="assets/images/blank.gif" alt=""></div>
-
-                                            <h3>Game Console Controller <br>+ USB 3.0 Cable</h3>
-                                        </a>
-
-                                        <span class="price">
-						<span class="electro-price">
-							<ins><span class="amount">$79.00</span></ins>
-							<del><span class="amount">$99.00</span></del>
-						</span>
-					</span><!-- /.price -->
-
-                                        <div class="deal-progress">
-                                            <div class="deal-stock">
-                                                <span class="stock-sold">Already Sold: <strong>2</strong></span>
-                                                <span class="stock-available">Available: <strong>26</strong></span>
-                                            </div>
-
-                                            <div class="progress">
-                                                <span class="progress-bar" style="width:8%">8</span>
-                                            </div>
-                                        </div><!-- /.deal-progress -->
-
-                                        <div class="deal-countdown-timer">
-                                            <div class="marketing-text text-xs-center">Hurry Up! Offer ends in:</div>
 
 
-                                            <div id="deal-countdown" class="countdown">
-                                                <span data-value="0" class="days"><span
-                                                        class="value">0</span><b>Days</b></span>
-                                                <span class="hours"><span class="value">7</span><b>Hours</b></span>
-                                                <span class="minutes"><span class="value">29</span><b>Mins</b></span>
-                                                <span class="seconds"><span class="value">13</span><b>Secs</b></span>
-                                            </div>
-                                            <span class="deal-end-date" style="display:none;">2019-12-31</span>
-                                            <script>
-                                                // set the date we're counting down to
-                                                var deal_end_date = document.querySelector(".deal-end-date").textContent;
-                                                var target_date = new Date(deal_end_date).getTime();
 
-                                                // variables for time units
-                                                var days, hours, minutes, seconds;
-
-                                                // get tag element
-                                                var countdown = document.getElementById('deal-countdown');
-
-                                                // update the tag with id "countdown" every 1 second
-                                                setInterval(function () {
-
-                                                    // find the amount of "seconds" between now and target
-                                                    var current_date = new Date().getTime();
-                                                    var seconds_left = (target_date - current_date) / 10000;
-
-                                                    // do some time calculations
-                                                    days = parseInt(seconds_left / 86400);
-                                                    seconds_left = seconds_left % 86400;
-
-                                                    hours = parseInt(seconds_left / 3600);
-                                                    seconds_left = seconds_left % 3600;
-
-                                                    minutes = parseInt(seconds_left / 60);
-                                                    seconds = parseInt(seconds_left % 60);
-
-                                                    // format countdown string + set tag value
-                                                    countdown.innerHTML = '<span data-value="' + days + '" class="days"><span class="value">' + days + '</span><b>Days</b></span><span class="hours"><span class="value">' + hours + '</span><b>Hours</b></span><span class="minutes"><span class="value">'
-                                                        + minutes + '</span><b>Mins</b></span><span class="seconds"><span class="value">' + seconds + '</span><b>Secs</b></span>';
-
-                                                }, 1000);
-                                            </script>
-                                        </div><!-- /.deal-countdown-timer -->
-                                    </div><!-- /.onsale-product -->
-                                </div><!-- /.onsale-products -->
-                            </section><!-- /.section-onsale-product -->
-                        </div><!-- /.col -->
-
-
-                        <div class="tabs-block col-lg-8">
+                        <div class="tabs-block col-lg-12">
                             <div class="products-carousel-tabs">
                                 <ul class="nav nav-inline">
                                     <li class="nav-item"><a class="nav-link active" href="#tab-products-1" data-toggle="tab">Sản Phẩm Mới</a></li>
@@ -252,7 +106,7 @@
                                                             {{--<span class="loop-product-categories">--}}
                                                                 {{--<a href="product-category.html" rel="tag">Laptops</a>--}}
                                                             {{--</span>--}}
-                                                            <a href="single-product.html">
+                                                            <a href="{{route('page.san_pham_chi_tiet',$item->id)}}">
                                                                 <h3>{{$item->ten_san_pham}}</h3>
                                                                 <div class="product-thumbnail">
                                                                     <img src="{{url('pubilc/page/assets/images/blank.gif')}}" data-echo="{{url($item->images_san_pham)}}" class="img-responsive" alt="">
@@ -645,7 +499,7 @@
                     <!-- ============================================================= 2-1-2 Product Grid : End============================================================= -->
                     <section class="section-product-cards-carousel animate-in-view fadeIn animated" data-animation="fadeIn">
                         <header>
-                            <a href="{{route('page.shop4')}}"><h2 class="h1">{{$danhmuclist[2]->ten_danh_muc_san_pham}}</h2></a>
+                            <a href="{{route('page.shop3')}}"><h2 class="h1">{{$danhmuclist[2]->ten_danh_muc_san_pham}}</h2></a>
                             {{--<ul class="nav nav-inline">--}}
                             {{--<li class="nav-item active"><span class="nav-link">Top 20</span></li>--}}
                             {{--<li class="nav-item"><a class="nav-link" href="product-category.html">Smart Phones &amp; Tablets</a></li>--}}
@@ -702,7 +556,7 @@
                     <!-- ============================================================= 2-1-2 Product Grid : End============================================================= -->
                     <section class="section-product-cards-carousel animate-in-view fadeIn animated" data-animation="fadeIn">
                         <header>
-                            <h2 class="h1">{{$danhmuclist[4]->ten_danh_muc_san_pham}}</h2>
+                            <a href="{{route('page.shop5')}}"><h2 class="h1">{{$danhmuclist[4]->ten_danh_muc_san_pham}}</h2></a>
                             {{--<ul class="nav nav-inline">--}}
                             {{--<li class="nav-item active"><span class="nav-link">Top 20</span></li>--}}
                             {{--<li class="nav-item"><a class="nav-link" href="product-category.html">Smart Phones &amp; Tablets</a></li>--}}
@@ -759,7 +613,7 @@
                     <!-- ============================================================= 2-1-2 Product Grid : End============================================================= -->
                     <section class="section-product-cards-carousel animate-in-view fadeIn animated" data-animation="fadeIn">
                         <header>
-                            <h2 class="h1">{{$danhmuclist[5]->ten_danh_muc_san_pham}}</h2>
+                            <a href="{{route('page.shop6')}}"><h2 class="h1">{{$danhmuclist[5]->ten_danh_muc_san_pham}}</h2></a>
                             {{--<ul class="nav nav-inline">--}}
                             {{--<li class="nav-item active"><span class="nav-link">Top 20</span></li>--}}
                             {{--<li class="nav-item"><a class="nav-link" href="product-category.html">Smart Phones &amp; Tablets</a></li>--}}

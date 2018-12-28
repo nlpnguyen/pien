@@ -30,7 +30,11 @@ Route::group(['prefix'=>'MasterDienTu'], function() {
     Route::get('cart', ['as' => 'cart', 'uses' => 'webdientucontroller@cart']);
     Route::get('addcart/{id}', ['as' => 'addcart', 'uses' => 'webdientucontroller@addcart']);
     Route::get('deletecart/{id}', ['as' => 'deletecart', 'uses' => 'webdientucontroller@deletecart']);
+    Route::post('updatesl/{id}', ['as' => 'updatesl', 'uses' => 'webdientucontroller@updatesl']);
     Route::get('checkout', ['as' => 'page.checkout', 'uses' => 'webdientucontroller@checkout']);
+    Route::post('checkout', ['as' => 'page.post_checkout', 'uses' => 'webdientucontroller@post_checkout']);
+    Route::get('chi-tiet-san-pham/{id}', ['as' => 'page.san_pham_chi_tiet', 'uses' => 'webdientucontroller@san_pham_chi_tiet']);
+    Route::post('mail', ['as' => 'post_email', 'uses' => 'webdientucontroller@post_email']);
 });
 Route::group(['prefix'=>'Admin'], function() {
     Route::get('admin-home', ['as' => 'admin.adhome', 'uses' => 'admincontroller@adhome']);
@@ -52,4 +56,7 @@ Route::group(['prefix'=>'Admin'], function() {
     Route::post('admin-add-loai-san-pham', ['as'=>'admin.post_add_loai_san_pham','uses' => 'admincontroller@post_add_loai_san_pham']);
     Route::get('admin-edit-loai-san-pham/{id}',['as'=>'admin.edit_loai_san_pham','uses'=>'admincontroller@edit_loai_san_pham']);
     Route::post('admin-edit-loai-san-pham/{id}',['as'=>'admin.post_edit_loai_san_pham','uses'=>'admincontroller@post_edit_loai_san_pham']);
+    /////////////////////Hoa-Don/////////////////////////
+    Route::get('admin-list-hoa-don', ['as' => 'admin.list_hoa_don', 'uses' => 'admincontroller@list_hoa_don']);
+    Route::get('admin-del/{id}', ['as' => 'admin.del_san_pham', 'uses' => 'admincontroller@del_san_pham']);
 });

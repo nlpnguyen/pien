@@ -45,28 +45,28 @@
     <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
     <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-    <div class="top-bar">
-        <div class="container">
-            <nav>
-                <ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
-                    <li class="menu-item animate-dropdown"><a title="Welcome to Worldwide Electronics Store" href="#">Chào Mừng Bạn Đến Mua Sắm Tại Electro</a></li>
-                </ul>
-            </nav>
+    {{--<div class="top-bar">--}}
+        {{--<div class="container">--}}
+            {{--<nav>--}}
+                {{--<ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">--}}
+                    {{--<li class="menu-item animate-dropdown"><a title="Welcome to Worldwide Electronics Store" href="#">Chào Mừng Bạn Đến Mua Sắm Tại Electro</a></li>--}}
+                {{--</ul>--}}
+            {{--</nav>--}}
 
-            <nav>
-                <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
-                    <li class="menu-item animate-dropdown"><a title="Store Locator" href="#"><i
-                                class="ec ec-map-pointer"></i>Store Locator</a></li>
-                    <li class="menu-item animate-dropdown"><a title="Track Your Order" href="track-your-order.html"><i
-                                class="ec ec-transport"></i>Track Your Order</a></li>
-                    <li class="menu-item animate-dropdown"><a title="Shop" href="shop.html"><i
-                                class="ec ec-shopping-bag"></i>Shop</a></li>
-                    <li class="menu-item animate-dropdown"><a title="My Account" href="my-account.html"><i
-                                class="ec ec-user"></i>My Account</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div><!-- /.top-bar -->
+            {{--<nav>--}}
+                {{--<ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">--}}
+                    {{--<li class="menu-item animate-dropdown"><a title="Store Locator" href="#"><i--}}
+                                {{--class="ec ec-map-pointer"></i>Store Locator</a></li>--}}
+                    {{--<li class="menu-item animate-dropdown"><a title="Track Your Order" href="track-your-order.html"><i--}}
+                                {{--class="ec ec-transport"></i>Track Your Order</a></li>--}}
+                    {{--<li class="menu-item animate-dropdown"><a title="Shop" href="shop.html"><i--}}
+                                {{--class="ec ec-shopping-bag"></i>Shop</a></li>--}}
+                    {{--<li class="menu-item animate-dropdown"><a title="My Account" href="my-account.html"><i--}}
+                                {{--class="ec ec-user"></i>My Account</a></li>--}}
+                {{--</ul>--}}
+            {{--</nav>--}}
+        {{--</div>--}}
+    {{--</div><!-- /.top-bar -->--}}
 
     <header id="masthead" class="site-header header-v1">
         <div class="container">
@@ -148,39 +148,21 @@
                             <li>
                                 <div class="widget_shopping_cart_content">
                                     <ul class="cart_list product_list_widget ">
+                                        @foreach($cart as $item)
                                         <li class="mini_cart_item">
                                             <a title="Remove this item" class="remove" href="#">×</a>
                                             <a href="single-product.html">
                                                 <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-                                                     src="{{url('page/assets/images/products/mini-cart1.jpg')}}" alt="">White
-                                                lumia 9001&nbsp;
+                                                     src="{{url($item->options['img'])}}" alt="">{{$item->name}};
                                             </a>
-                                            <span class="quantity">2 × <span class="amount">£150.00</span></span>
+                                            <span class="quantity">{{$item->qty}} × <span class="amount">{{$item->price}}</span></span>
                                         </li>
-                                        <li class="mini_cart_item">
-                                            <a title="Remove this item" class="remove" href="#">×</a>
-                                            <a href="single-product.html">
-                                                <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-                                                     src="{{url('page/assets/images/products/mini-cart2.jpg')}}" alt="">PlayStation
-                                                4&nbsp;
-                                            </a>
-                                            <span class="quantity">1 × <span class="amount">£399.99</span></span>
-                                        </li>
-                                        <li class="mini_cart_item">
-                                            <a data-product_sku="" data-product_id="34" title="Remove this item"
-                                               class="remove" href="#">×</a>
-                                            <a href="single-product.html">
-                                                <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image"
-                                                     src="{{url('page/assets/images/products/mini-cart3.jpg')}}" alt="">POV
-                                                Action Cam HDR-AS100V&nbsp;
-                                            </a>
-                                            <span class="quantity">1 × <span class="amount">£269.99</span></span>
-                                        </li>
+                                            @endforeach
                                     </ul><!-- end product list -->
-                                    <p class="total"><strong>Subtotal:</strong> <span class="amount">£969.98</span></p>
+                                    {{--<p class="total"><strong>Subtotal:</strong> <span class="amount">£969.98</span></p>--}}
                                     <p class="buttons">
                                         <a class="button wc-forward" href="{{url('http://localhost/pien/public/MasterDienTu/cart')}}">View Cart</a>
-                                        <a class="button checkout wc-forward" href="checkout.html">Checkout</a>
+                                        <a class="button checkout wc-forward" href="{{url('http://localhost/pien/public/MasterDienTu/checkout')}}">Checkout</a>
                                     </p>
                                 </div>
                             </li>
@@ -205,10 +187,10 @@
                             <li class="list-group-item" ><span><i class="fa fa-list-ul"></i> Danh Mục Sản Phẩm</span></li>
                             @foreach($category_product as $item)
                             <li id="menu-item-2695" class="menu-item menu-item-has-children animate-dropdown dropdown">
-                                <a title="Accessories" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{$item->ten_danh_muc_san_pham}}</a>
+                                <a title="Accessories" data-hover="dropdown" href="{{$item->link}}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{$item->ten_danh_muc_san_pham}}</a>
                                 <ul role="menu" class=" dropdown-menu">
                                     @foreach($item['con'] as $value)
-                                    <li class="menu-item animate-dropdown"><a href="#">{{$value['ten_loai_san_pham']}}</a></li>
+                                    <li class="menu-item animate-dropdown"><a href="{{$item->link}}">{{$value['ten_loai_san_pham']}}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -224,148 +206,12 @@
 <!-- #pagecontenend-->
 
     <footer id="colophon" class="site-footer">
-        {{--<div class="footer-widgets">--}}
-            {{--<div class="container">--}}
-                {{--<div class="row">--}}
-                    {{--<div class="col-lg-4 col-md-4 col-xs-12">--}}
-                        {{--<aside class="widget clearfix">--}}
-                            {{--<div class="body">--}}
-                                {{--<h4 class="widget-title">Featured Products</h4>--}}
-                                {{--<ul class="product_list_widget">--}}
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Tablet Thin EliteBook  Revolve 810 G6">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/1.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Tablet Thin EliteBook  Revolve 810 G6</span>--}}
-                                        {{--</a>--}}
-                                        {{--<span class="electro-price"><span class="amount">&#36;1,300.00</span></span>--}}
-                                    {{--</li>--}}
-
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Smartphone 6S 128GB LTE">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/2.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt=""><span--}}
-                                                {{--class="product-title">Smartphone 6S 128GB LTE</span>--}}
-                                        {{--</a>--}}
-                                        {{--<span class="electro-price"><span class="amount">&#36;780.00</span></span>--}}
-                                    {{--</li>--}}
-
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Smartphone 6S 64GB LTE">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/3.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Smartphone 6S 64GB LTE</span>--}}
-                                        {{--</a>--}}
-                                        {{--<span class="electro-price"><span class="amount">&#36;1,215.00</span></span>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</aside>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-lg-4 col-md-4 col-xs-12">--}}
-                        {{--<aside class="widget clearfix">--}}
-                            {{--<div class="body"><h4 class="widget-title">Onsale Products</h4>--}}
-                                {{--<ul class="product_list_widget">--}}
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/3.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>--}}
-                                        {{--</a>--}}
-                                        {{--<span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span--}}
-                                                    {{--class="amount">&#36;2,299.00</span></del></span>--}}
-                                    {{--</li>--}}
-
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Tablet Red EliteBook  Revolve 810 G2">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/4.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Tablet Red EliteBook  Revolve 810 G2</span>--}}
-                                        {{--</a>--}}
-                                        {{--<span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span--}}
-                                                    {{--class="amount">&#36;2,299.00</span></del></span>--}}
-                                    {{--</li>--}}
-
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Widescreen 4K SUHD TV">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/5.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Widescreen 4K SUHD TV</span>--}}
-                                        {{--</a>--}}
-                                        {{--<span class="electro-price"><ins><span class="amount">&#36;2,999.00</span></ins> <del><span--}}
-                                                    {{--class="amount">&#36;3,299.00</span></del></span>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</aside>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-lg-4 col-md-4 col-xs-12">--}}
-                        {{--<aside class="widget clearfix">--}}
-                            {{--<div class="body">--}}
-                                {{--<h4 class="widget-title">Top Rated Products</h4>--}}
-                                {{--<ul class="product_list_widget">--}}
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/6.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>--}}
-                                        {{--</a>--}}
-                                        {{--<div class="star-rating" title="Rated 5 out of 5"><span--}}
-                                                {{--style="width:100%"><strong class="rating">5</strong> out of 5</span>--}}
-                                        {{--</div>--}}
-                                        {{--<span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span--}}
-                                                    {{--class="amount">&#36;2,299.00</span></del></span>--}}
-                                    {{--</li>--}}
-
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html"--}}
-                                           {{--title="Apple MacBook Pro MF841HN/A 13-inch Laptop">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/7.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span--}}
-                                                {{--class="product-title">Apple MacBook Pro MF841HN/A 13-inch Laptop</span>--}}
-                                        {{--</a>--}}
-                                        {{--<div class="star-rating" title="Rated 5 out of 5"><span--}}
-                                                {{--style="width:100%"><strong class="rating">5</strong> out of 5</span>--}}
-                                        {{--</div>--}}
-                                        {{--<span class="electro-price"><span class="amount">&#36;1,800.00</span></span>--}}
-                                    {{--</li>--}}
-
-                                    {{--<li>--}}
-                                        {{--<a href="single-product.html" title="Tablet White EliteBook Revolve  810 G2">--}}
-                                            {{--<img class="wp-post-image"--}}
-                                                 {{--data-echo="{{url('public/page/assets/images/footer/2.jpg')}}"--}}
-                                                 {{--src="{{url('public/page/assets/images/blank.gif')}}" alt="">--}}
-                                            {{--<span class="product-title">Tablet White EliteBook Revolve  810 G2</span>--}}
-                                        {{--</a>--}}
-                                        {{--<div class="star-rating" title="Rated 5 out of 5"><span--}}
-                                                {{--style="width:100%"><strong class="rating">5</strong> out of 5</span>--}}
-                                        {{--</div>--}}
-                                        {{--<span class="electro-price"><span class="amount">&#36;1,999.00</span></span>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</aside>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-
         <div class="footer-newsletter">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-7">
-                        <h5 class="newsletter-title">Sign up to Newsletter</h5>
-                        <span
-                            class="newsletter-marketing-text">...and receive <strong>$20 coupon for first shopping</strong></span>
+                        <h5 class="newsletter-title">Electro Sự Lựa Chọn Của Người Tiêu Dùng</h5>
+
                     </div>
                     <div class="col-xs-12 col-sm-5">
                         <form>
@@ -385,81 +231,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-7 col-md-push-5">
-                        <div class="columns">
-                            <aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
-                                <div class="body">
-                                    <h4 class="widget-title">Find It Fast</h4>
-                                    <div class="menu-footer-menu-1-container">
-                                        <ul id="menu-footer-menu-1" class="menu">
-                                            <li class="menu-item"><a href="single-product.html">Laptops &#038;
-                                                    Computers</a></li>
-                                            <li class="menu-item"><a href="single-product.html">Cameras &#038;
-                                                    Photography</a></li>
-                                            <li class="menu-item"><a href="single-product.html">Smart Phones &#038;
-                                                    Tablets</a></li>
-                                            <li class="menu-item"><a href="single-product.html">Video Games &#038;
-                                                    Consoles</a></li>
-                                            <li class="menu-item"><a href="single-product.html">TV &#038; Audio</a></li>
-                                            <li class="menu-item"><a href="single-product.html">Gadgets</a></li>
-                                            <li class="menu-item "><a href="single-product.html">Car Electronic &#038;
-                                                    GPS</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div><!-- /.columns -->
-
-                        <div class="columns">
-                            <aside id="nav_menu-3" class="widget clearfix widget_nav_menu">
-                                <div class="body">
-                                    <h4 class="widget-title">&nbsp;</h4>
-                                    <div class="menu-footer-menu-2-container">
-                                        <ul id="menu-footer-menu-2" class="menu">
-                                            <li class="menu-item"><a href="single-product.html">Printers &#038; Ink</a>
-                                            </li>
-                                            <li class="menu-item "><a href="single-product.html">Software</a></li>
-                                            <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742">
-                                                <a href="single-product.html">Office Supplies</a></li>
-                                            <li class="menu-item "><a href="single-product.html">Computer Components</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div><!-- /.columns -->
-
-                        <div class="columns">
-                            <aside id="nav_menu-4" class="widget clearfix widget_nav_menu">
-                                <div class="body">
-                                    <h4 class="widget-title">Customer Care</h4>
-                                    <div class="menu-footer-menu-3-container">
-                                        <ul id="menu-footer-menu-3" class="menu">
-                                            <li class="menu-item"><a href="single-product.html">My Account</a></li>
-                                            <li class="menu-item"><a href="single-product.html">Track your Order</a>
-                                            </li>
-                                            <li class="menu-item"><a href="single-product.html">Wishlist</a></li>
-                                            <li class="menu-item"><a href="single-product.html">Customer Service</a>
-                                            </li>
-                                            <li class="menu-item"><a href="single-product.html">Returns/Exchange</a>
-                                            </li>
-                                            <li class="menu-item"><a href="single-product.html">FAQs</a></li>
-                                            <li class="menu-item"><a href="hsingle-product.html">Product Support</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div><!-- /.columns -->
-
                     </div><!-- /.col -->
                         <div class="footer-logo">
 
                             <div class="footer-contact col-xs-12 col-sm-12 col-md-5 col-md-pull-7">
-                            <svg version="1.1" x="0px" y="0px" width="156px"
-                                 height="37px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
-                                <ellipse fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341"
-                                         rx="5.32" ry="5.367"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
+                                <div class="footer-logo">
+                                    <svg version="1.1" x="0px" y="0px" width="156px"
+                                         height="37px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
+                                        <ellipse fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341"
+                                                 rx="5.32" ry="5.367"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
 						C30.263,0.995,29.876,1.181,29.79,1.5c-0.148,0.548,0,1.568,0,2.427v36.459c0.265,0.221,0.506,0.465,0.725,0.734h6.187
 						c0.2-0.25,0.423-0.477,0.669-0.678V1.387C37.124,1.185,36.9,0.959,36.701,0.71H30.514z M117.517,12.731
 						c-0.232-0.189-0.439-0.64-0.781-0.734c-0.754-0.209-2.039,0-3.121,0h-3.176V4.435c-0.232-0.189-0.439-0.639-0.781-0.733
@@ -494,47 +275,64 @@
 						c0.404-1.031-0.365-1.502-0.891-2.088c-2.543-2.835-6.66-5.377-11.704-5.137c-6.02,0.288-10.218,3.697-12.484,7.846
 						c-1.293,2.365-1.951,5.158-1.729,8.408c0.209,3.053,1.191,5.496,2.619,7.508c2.842,4.004,7.385,6.973,13.656,6.377
 						c5.976-0.568,9.574-3.936,11.816-8.354c-0.141-0.271-0.221-0.604-0.336-0.902C92.929,31.364,90.843,30.485,88.812,29.55z"/>
-                            </svg>
-                        </div><!-- /.footer-contact -->
+                                    </svg>
+                                </div><!-- /.footer-contact -->
 
-                        <div class="footer-call-us">
-                            <div class="media">
-                                <span class="media-left call-us-icon media-middle"><i class="ec ec-support"></i></span>
-                                <div class="media-body">
-                                    <span class="call-us-text">Got Questions ? Call us 24/7!</span>
-                                    <span class="call-us-number">(800) 8001-8588, (0600) 874 548</span>
+                                <div class="footer-call-us">
+                                    <div class="media">
+                                        <span class="media-left call-us-icon media-middle"><i class="ec ec-support"></i></span>
+                                        <div class="media-body">
+                                            <span class="call-us-text">Mọi Thắc Mắc Xin Liên Hệ</span>
+                                            <span class="call-us-number">0909 1999 9111 0999</span>
+                                        </div>
+                                    </div>
+                                </div><!-- /.footer-call-us -->
+
+
+
+
+                                <div class="footer-address">
+                                    <strong class="footer-address-title">Contact Info</strong>
+                                    <address>09 Đường Số 9, Phường Chín, Quận Mười Chín, Thành Phố Khét Lẹt</address>
+                                </div><!-- /.footer-address -->
+
+                                <div class="footer-social-icons">
+                                    <ul class="social-icons list-unstyled">
+                                        <li><a class="fa fa-facebook"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-twitter"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-pinterest"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-linkedin"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-google-plus"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-tumblr"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-instagram"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-youtube"
+                                               href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                                        <li><a class="fa fa-rss" href="#"></a></li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div><!-- /.footer-call-us -->
+                            </div>
+
+                            <div class="footer-call-us">
+                                <div class="media">
+                                    <span class="media-left call-us-icon media-middle"><i class="ec ec-support"></i></span>
+                                    <div class="media-body">
+                                        <span class="call-us-text">Got Questions ? Call us 24/7!</span>
+                                        <span class="call-us-number">(800) 8001-8588, (0600) 874 548</span>
+                                    </div>
+                                </div>
+                            </div>
 
 
-                        <div class="footer-address">
-                            <strong class="footer-address-title">Contact Info</strong>
-                            <address>17 Princess Road, London, Greater London NW1 8JR, UK</address>
-                        </div><!-- /.footer-address -->
 
-                        <div class="footer-social-icons">
-                            <ul class="social-icons list-unstyled">
-                                <li><a class="fa fa-facebook"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-twitter"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-pinterest"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-linkedin"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-google-plus"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-tumblr"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-instagram"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-youtube"
-                                       href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                                <li><a class="fa fa-rss" href="#"></a></li>
-                            </ul>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>

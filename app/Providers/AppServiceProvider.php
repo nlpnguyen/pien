@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
 ////            $cart = Cart::content();
 ////            $view->with(['cart'=>$cart]);
 ////        });
-        $cart = Cart::content();
+///
+        $cart= Cart::content();
         View::share('cart', $cart);
         $suptotal=Cart::subtotal();
         View::share('suptotal', $suptotal);

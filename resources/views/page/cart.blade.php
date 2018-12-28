@@ -25,7 +25,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($cart as $item)
-                                    <input type="hidden" value="{{$item->rowId}}">
+                                    <input type="hidden" id="rowId" value="{{$item->rowId}}">
                                 <tr class="cart_item">
                                     <td class="product-remove">
                                         <a class="remove" href="{{route('deletecart',$item->rowId)}}">×</a>
@@ -43,14 +43,15 @@
                                     </td>
 
                                     <td data-title="Quantity" class="product-quantity">
-                                        <div class="quantity buttons_added"><input type="button" class="minus" value="-">
+                                        <div class="quantity">
+                                            {{--<input type="button" class="minus" value="-">--}}
                                             <label>Quantity:</label>
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="{{$item->qty}}" name="cart[92f54963fc39a9d87c2253186808ea61][qty]" max="29" min="0" step="1">
-                                            <input type="button" class="plus" value="+">
+                                            <input id="sl{{$item->id}}" onblur="update({{$item->id}})" type="number" size="4" class="input-text qty text" title="Qty"  value="{{$item->qty}}" name="cart[92f54963fc39a9d87c2253186808ea61][qty]" max="29" min="0" step="1">
+                                            {{--<input type="button" class="plus" value="+">--}}
                                         </div>
                                     </td>
                                     <td data-title="Total" class="product-subtotal">
-                                        <span class="amount">{{$item->total}}</span>
+                                        <span id="total{{$item->id}}" class="amount">{{$item->qty*$item->price}}</span>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -71,7 +72,6 @@
                                     {{--<td data-title="Price" class="product-price">--}}
                                         {{--<span class="amount">$1,300.00</span>--}}
                                     {{--</td>--}}
-
                                     {{--<td data-title="Quantity" class="product-quantity">--}}
                                         {{--<div class="quantity buttons_added"><input type="button" class="minus" value="-">--}}
                                             {{--<label>Quantity:</label>--}}
@@ -93,7 +93,7 @@
 
                                         {{--</div>--}}
 
-                                        <input type="submit" value="Update Cart" name="update_cart" class="button">
+                                        {{--<input type="submit" value="Update Cart" name="update_cart" class="button">--}}
 
                                         <div class="wc-proceed-to-checkout">
 
@@ -171,4 +171,29 @@
             </div><!-- #primary -->
         </div><!-- .container -->
     </div>
-@stop
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" >
+
+    function update(id){
+       var sl =document.getElementById("sl"+id).value;
+       var rowId = document.getElementById("rowId").value;
+        $.ajax({
+            url: 'updatesl/'+id+'',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type: 'POST',
+            data: {
+                rowId: rowId,
+                sl: sl,
+                _token: $('#signup-token').val(),
+            },
+            success:function (data) {
+                $('#total'+id).html(data);
+            }
+        })
+    }
+</script>
+@endsection
