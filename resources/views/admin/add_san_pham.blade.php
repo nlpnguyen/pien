@@ -40,7 +40,7 @@
                                                         <label class="col-sm-2 col-form-label"> Mô Tả </label>
                                                         <div class="col-sm-10">
 
-                                                            <textarea name="content" id="editor" cols="30" rows="10"></textarea>
+                                                            <textarea name="content" id="editor" cols="50" rows="50"></textarea>
 
                                                             <span class="messages"></span>
                                                         </div>

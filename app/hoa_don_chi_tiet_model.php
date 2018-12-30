@@ -9,6 +9,7 @@ class hoa_don_chi_tiet_model extends Model
     protected $table ='hoa_don_chi_tiet';
     protected $fillable = [
         'id',
+        'id_hoa_don',
         'id_san_pham',
         'unit_price',
         'so_luong',

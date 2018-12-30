@@ -10,9 +10,12 @@ use App\anhctmodel;
 use App\khachhangmodel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use Cart;
 use Mail;
+
 use Illuminate\Support\Facades\View;
 class webdientucontroller extends Controller
 {
@@ -258,26 +261,26 @@ class webdientucontroller extends Controller
         $khachhang->tong_tien = $suptotal;
         $khachhang->dia_chi = $Request->dia_chi;
         $khachhang->save();
+        $checkout1 = new hoa_don_model();
+        $checkout1->id_khach_hang = $khachhang->id;
+        $checkout1->ten_khach_hang = $khachhang->ten_khach_hang;
+        $checkout1->tong_tien = $suptotal;
+        $checkout1->ghi_chu = $Request->ghi_chu;
+        $checkout1->trangthai=1;
+        $checkout1->save();
         foreach ($cart as $value){
         $checkout = new hoa_don_chi_tiet_model();
         $checkout->id_khachhang = $khachhang->id;
+        $checkout->id_hoa_don = $checkout1->id;
         $checkout->id_san_pham = $value->id;
         $checkout->unit_price = $value->price;
         $checkout->so_luong =  $value->qty;
-        $checkout->ghi_chu =   $Request->ghi_chu;
         $checkout->trangthai=1;
         $checkout->save();
        }
-        foreach ($cart as $item){
-            $checkout1 = new hoa_don_model();
-            $checkout1->id_khach_hang = $khachhang->id;
-            $checkout1->ten_khach_hang = $khachhang->ten_khach_hang;
-            $checkout1->tong_tien = $suptotal;
-            $checkout1->ghi_chu = $checkout->ghi_chu;
-            $checkout1->trangthai=1;
-            $checkout1->save();
 
-        }
+
+
         foreach ($cart as $value){
             $qty = $value->qty;
             $name = $value->name;
@@ -334,7 +337,7 @@ class webdientucontroller extends Controller
         // cho cái đống gửi mail lên phần check out luon :))
 
 //        dd($data);
-        //do lag ahihi
+        //do lag ahihi route('page.home')
        // thử lại ctrls oke
         Mail::send('page.mail',$data,function ($message) use ($data){
         $message->from('phucnguyennbo@gmail.com');
@@ -342,6 +345,38 @@ class webdientucontroller extends Controller
         //ctrl s  ok
     });
 
+        return redirect()->route('page.home');
+    }
+    public function account(){
+
+        return view('page.account');
+    }
+    public function post_account(Request $Request){
+//        dd(Hash::make('nguyen'));
+        $this->validate($Request,
+            [
+                'email'=>'required|email',
+                'password'=>'required|min:6|max:20'
+            ],
+            [
+                'email.required'=>'Chưa Nhập Email',
+                'email.email'=>'Email Chưa Đúng',
+                'password.required'=>'Bạn Chưa Nhập Mật Khẩu',
+                'password.min'=>'Mật Khẩu Phải Có Ít Nhất 6 Ký Tự',
+                'password.max'=>'Mật Khẩu Không Quá 20 Ký Tự',
+            ]);
+        $credentials=array('email'=>$Request->email,'password'=>$Request->password);
+        if (Auth::attempt($credentials)){
+
+            return redirect()->route('page.home')->with(['flash'=>'success','message'=>'Đăng Nhập Thành Công!']);
+        }
+        else{
+            return redirect()->back()->with(['flash'=>'danger','message'=>'Đăng Nhập Thất Bại!']);
+        }
+
+    }
+    public function post_outaccount (){
+        Auth::logout();
         return redirect()->route('page.home');
     }
 }

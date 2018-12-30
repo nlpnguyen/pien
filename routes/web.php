@@ -35,6 +35,9 @@ Route::group(['prefix'=>'MasterDienTu'], function() {
     Route::post('checkout', ['as' => 'page.post_checkout', 'uses' => 'webdientucontroller@post_checkout']);
     Route::get('chi-tiet-san-pham/{id}', ['as' => 'page.san_pham_chi_tiet', 'uses' => 'webdientucontroller@san_pham_chi_tiet']);
     Route::post('mail', ['as' => 'post_email', 'uses' => 'webdientucontroller@post_email']);
+    Route::get('dang-nhap', ['as' => 'page.account', 'uses' => 'webdientucontroller@account']);
+    Route::post('dang-nhap', ['as' => 'page.post_account', 'uses' => 'webdientucontroller@post_account']);
+    Route::get('dang-xuat', ['as' => 'page.post_outaccount', 'uses' => 'webdientucontroller@post_outaccount']);
 });
 Route::group(['prefix'=>'Admin'], function() {
     Route::get('admin-home', ['as' => 'admin.adhome', 'uses' => 'admincontroller@adhome']);
@@ -44,6 +47,7 @@ Route::group(['prefix'=>'Admin'], function() {
     Route::post('admin-add-san-pham', ['as'=>'admin.post_add_san_pham','uses' => 'admincontroller@post_add_san_pham']);
     Route::get('admin-edit-san-pham/{id}',['as'=>'admin.edit_san_pham','uses'=>'admincontroller@edit_san_pham']);
     Route::post('admin-edit-san-pham/{id}',['as'=>'admin.post_edit_san_pham','uses'=>'admincontroller@post_edit_san_pham']);
+    Route::get('admin-del/{id}', ['as' => 'admin.del_san_pham', 'uses' => 'admincontroller@del_san_pham']);
     /////////////////////danh_muc_san_pham//////////////////////////
     Route::get('admin-list-danh-muc-san-pham', ['as' => 'admin.list_danh_muc_san_pham', 'uses' => 'admincontroller@list_danh_muc_san_pham']);
     Route::get('admin-add-danh-muc-san-pham', ['as' => 'admin.add_danh_muc_san_pham', 'uses' => 'admincontroller@add_danh_muc_san_pham']);
@@ -58,5 +62,7 @@ Route::group(['prefix'=>'Admin'], function() {
     Route::post('admin-edit-loai-san-pham/{id}',['as'=>'admin.post_edit_loai_san_pham','uses'=>'admincontroller@post_edit_loai_san_pham']);
     /////////////////////Hoa-Don/////////////////////////
     Route::get('admin-list-hoa-don', ['as' => 'admin.list_hoa_don', 'uses' => 'admincontroller@list_hoa_don']);
-    Route::get('admin-del/{id}', ['as' => 'admin.del_san_pham', 'uses' => 'admincontroller@del_san_pham']);
+    /////////////////////Hoa-Don-chi-tiet/////////////////////////
+    Route::get('admin-list-hoa-don-chi-tiet/{id}', ['as' => 'admin.list_hoa_don_chi_tiet', 'uses' => 'admincontroller@list_hoa_don_chi_tiet']);
+
 });

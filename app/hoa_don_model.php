@@ -10,6 +10,7 @@ class hoa_don_model extends Model
     protected $fillable = [
         'id',
         'id_khach_hang',
+        'tong_tien',
         'ngay_mua',
         'ghi_chu',
         'trangthai',

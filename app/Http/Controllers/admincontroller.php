@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\hoa_don_chi_tiet_model;
+use App\hoa_don_model;
 use App\khachhangmodel;
 use App\san_pham_model;
 use App\loai_san_pham_model;
 use App\danh_muc_san_pham_model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class admincontroller extends Controller
 {
@@ -216,12 +218,30 @@ class admincontroller extends Controller
     //haodon//
     public function list_hoa_don()
     {
-        $hoadon = khachhangmodel::all();
-        foreach ($hoadon as $key=>$value) {
-            $hoadon[$key]['spc']=hoa_don_chi_tiet_model::select('*')->join('san_pham','san_pham.id','hoa_don_chi_tiet.id_san_pham')->where('id_khachhang',$value->id)->get();
-        }
+        $hoadon = hoa_don_model::all();
+//        $hoadon = khachhangmodel::all();
+//        foreach ($hoadon as $key=>$value) {
+//            $hoadon[$key]['spc']=hoa_don_model::select('*')->join('hoa_don_chi_tiet','id_hoa_don','hoa_don.id')->where('id_khachhang',$value->id)->get();
+////            $hoadon[$key]['spc']=hoa_don_chi_tiet_model::select('*')->join('san_pham','san_pham.id','hoa_don_chi_tiet.id_san_pham')->where('id_khachhang',$value->id)->get();
+//        }
 //        dd($hoadon);
         return view('admin.list_hoa_don', compact('hoadon'));
+    }
+    public function list_hoa_don_chi_tiet($id)
+    {
+        $tkh=DB::table('khachhang')->select('ten_khach_hang')->first();
+        $hoadon = hoa_don_model::all();
+        foreach ($hoadon as $key=>$value) {
+            $hoadon[$key]['sp']=hoa_don_chi_tiet_model::select('*')
+                ->join('hoa_don','hoa_don_chi_tiet.id_hoa_don','=','hoa_don.id')
+                ->join('san_pham','hoa_don_chi_tiet.id_san_pham','=','san_pham.id')
+                ->where('id_khach_hang',$value->id)
+//                ->select('*')
+                ->get();
+//            $hoadon[$key]['spc']=hoa_don_chi_tiet_model::select('*')->join('san_pham','san_pham.id','hoa_don_chi_tiet.id_san_pham')->where('id_khachhang',$value->id)->get();
+        }
+//        dd($hoadon);
+        return view('admin.list_hoa_don_chi_tiet', compact('hoadon','tkh'));
     }
 
     public function del_san_pham(Request $request,$id){

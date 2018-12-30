@@ -17,7 +17,7 @@
                                             <!-- Autofill table start -->
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h5>Danh Sách Sản Phẩm</h5>
+                                                    <h5>Hóa Đơn Khách Hàng {{$tkh->ten_khach_hang}} </h5>
                                                 </div>
                                                 <div class="card-block">
                                                     <div class="dt-responsive table-responsive">
@@ -25,24 +25,44 @@
                                                         <table id="basic-btn" class="table table-striped table-bordered nowrap">
                                                             <thead>
                                                             <tr>
-                                                                <th>id</th>
-                                                                <th>Sản Phẩm</th>
-                                                                <th>Ảnh</th>
+                                                                <th>Tên Sản Phẩm</th>
+                                                                <th>Ảnh Sản Phẩm</th>
                                                                 <th>Giá Bán</th>
-                                                                <th>Giá Gốc</th>
-                                                                <th>Đã Bán</th>
-                                                                <th></th>
+                                                                {{--<th>Giá Bán</th>--}}
+                                                                {{--<th>Giá Gốc</th>--}}
+                                                                {{--<th>Đã Bán</th>--}}
+                                                                {{--<th></th>--}}
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @foreach($product as $item)
+                                                            @foreach($hoadon as $item)
                                                                 <tr>
-                                                                    <td>{{$item->id}}</td>
-                                                                    <td>{{str_limit($item->ten_san_pham,20)}}</td>
-                                                                    <td><img src="{{url($item->images_san_pham)}}" style="width: 30%;" alt=""></td>
-                                                                    <td>{{$item->gia_ban}}</td>
-                                                                    <td>{{$item->gia_goc}}</td>
-                                                                    <td>{{str_limit($item->so_luong_da_ban,20)}}</td>
+                                                                    {{--<td>{{$item->ten_khach_hang}}</td>--}}
+                                                                    {{--<td>--}}
+                                                                        {{--@foreach ($item['sp'] as $value)--}}
+                                                                        {{--{{$value->id_san_pham}}<br>--}}
+                                                                        {{--@endforeach--}}
+                                                                    {{--</td>--}}
+                                                                    <td>
+                                                                        @foreach ($item['sp'] as $value)
+                                                                            {{$value->ten_san_pham}}<br>
+                                                                        @endforeach
+                                                                    </td>
+
+                                                                    <td>
+                                                                        @foreach ($item['sp'] as $value)
+                                                                            <img src="{{url($value->images_san_pham)}}" style="width: 10%;" alt="">
+                                                                            {{--{{$value->ten_san_pham}}<br>--}}
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td>
+                                                                        @foreach ($item['sp'] as $value)
+                                                                            {{$value->unit_price}}<br>
+                                                                        @endforeach
+                                                                    </td>
+                                                                    {{--<td>{{$item->gia_ban}}<img src="{{url($item->images_san_pham)}}" style="width: 30%;" alt=""></td>--}}
+                                                                    {{--<td>{{$item->gia_goc}}</td>--}}
+                                                                    {{--<td>{{str_limit($item->so_luong_da_ban,20)}}</td>--}}
                                                                     {{--<td>--}}
                                                                         {{--@if($item['trangthai']==1)--}}
                                                                         {{--<div class="btn waves-effect btn waves-effect waves-light btn-success btn-icon">--}}
@@ -54,26 +74,26 @@
                                                                             {{--</div>--}}
                                                                         {{--@endif--}}
                                                                     {{--</td>--}}
-                                                                    <td>
+                                                                    {{--<td>--}}
 
-                                                                            <a href="{!! URL::route('admin.edit_san_pham',$item['id']) !!}" class="btn waves-effect waves-dark btn-primary btn-outline-primary btn-icon"><i class="fa fa-edit"></i></a>
-                                                                            <a href="{!! URL::route('admin.del_san_pham',$item['id']) !!}" class="btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon" id="del"><i class="ti-trash"></i></a>
+                                                                            {{--<a href="{!! URL::route('admin.edit_san_pham',$item['id']) !!}" class="btn waves-effect waves-dark btn-primary btn-outline-primary btn-icon"><i class="fa fa-edit"></i></a>--}}
+                                                                            {{--<a href="{!! URL::route('admin.del_san_pham',$item['id']) !!}" class="btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon" id="del"><i class="ti-trash"></i></a>--}}
                                                                             {{--<a href="" class="btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon" id="del"><i class="ti-trash"></i></a>--}}
 
 
-                                                                    </td>
+                                                                    {{--</td>--}}
                                                                 </tr>
                                                             @endforeach
                                                             </tbody>
                                                             <tfoot>
                                                             <tr>
-                                                                <th>id</th>
-                                                                <th>Sản Phẩm</th>
-                                                                <th>Ảnh</th>
-                                                                <th>Giá Bán</th>
-                                                                <th>Giá Gốc</th>
-                                                                <th>Đã Bán</th>
-                                                                <th></th>
+                                                                <th>Tên Sản Phẩm</th>
+                                                                <th> Ảnh Sản Phẩm</th>
+                                                                <th>Giá bán</th>
+                                                                {{--<th>Giá Bán</th>--}}
+                                                                {{--<th>Giá Gốc</th>--}}
+                                                                {{--<th>Đã Bán</th>--}}
+                                                                {{--<th></th>--}}
                                                             </tr>
                                                             </tfoot>
                                                         </table>
